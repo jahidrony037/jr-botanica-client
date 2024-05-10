@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { LuEye, LuEyeOff } from "react-icons/lu";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import useAuth from "./../../hooks/useAuth";
 const SignUP = () => {
+  const { createUser, updateUser, logOut } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -14,33 +17,33 @@ const SignUP = () => {
 
   const onSubmit = (data) => {
     const { email, name, password, photo } = data;
-    console.log(email, name, password, photo);
-    // createUser(email, password)
-    //   .then((result) => {
-    //     const user = result.user;
-    //     setError(" ");
-    //     if (user) {
-    //       updateUser(name, photo).then(() => {
-    //         Swal.fire({
-    //           title: "Good job!",
-    //           text: "User Create Successfully. Login Now!",
-    //           icon: "success",
-    //         });
-    //         logOut()
-    //           .then(() => {})
-    //           .catch((error) => {
-    //             console.log(error?.message);
-    //           });
-    //         navigate("/login");
-    //       });
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     setError(error?.message);
-    //   });
+    // console.log(email, name, password, photo);
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        setError(" ");
+        if (user) {
+          updateUser(name, photo).then(() => {
+            Swal.fire({
+              title: "Nicely Done!",
+              text: "User Create Successfully. Login Now!",
+              icon: "success",
+            });
+            logOut()
+              .then(() => {})
+              .catch((error) => {
+                console.log(error?.message);
+              });
+            navigate("/login");
+          });
+        }
+      })
+      .catch((error) => {
+        setError(error?.message);
+      });
   };
   return (
-    <div className="flex flex-col justify-center items-center  md:flex-row md:justify-between gap-6 md:items-center">
+    <div className="flex flex-col justify-center items-center  md:flex-row md:justify-between gap-6 md:items-center w-full">
       <div>
         <img
           src="https://i.ibb.co/GtKtr8R/healthy-food.png"
@@ -178,7 +181,7 @@ const SignUP = () => {
             </button>
           </div>
         </form>
-        {error && <span className="text-red-600 font-bold">{error}</span>}
+        {error && <span className="text-red-600 font-bold ml-7">{error}</span>}
         <p className="text-center text-md py-3">
           Already have an account?{" "}
           <span className="text-[#84d814] underline">
