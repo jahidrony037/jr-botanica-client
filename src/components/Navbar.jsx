@@ -6,6 +6,19 @@ import logo from "../../public/logo.svg";
 import useAuth from "../hooks/useAuth";
 import "./Navbar.css";
 const Navbar = () => {
+  const { logOut, user, isLoading, show, setShow } = useAuth();
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        toast.success(
+          `${user?.providerData[0]?.displayName} Logged out Successfully`
+        );
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
   const navLinks = (
     <>
       <li>
@@ -25,20 +38,6 @@ const Navbar = () => {
       </li>
     </>
   );
-
-  const { logOut, user, isLoading, show, setShow } = useAuth();
-
-  const handleLogOut = () => {
-    logOut()
-      .then(() => {
-        toast.success(
-          `${user?.providerData[0]?.displayName} Logged out Successfully`
-        );
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      });
-  };
   return (
     <nav>
       <div className="navbar bg-base-100 sticky top-0 shadow-sm z-10 pl-0">
