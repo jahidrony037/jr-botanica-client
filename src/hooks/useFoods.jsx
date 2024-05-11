@@ -1,19 +1,33 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "./useAxiosSecure";
 
-const useFoods = () => {
-  const [foods, setFoods] = useState([]);
+const useFoods = (url) => {
+  // const [foods, setFoods] = useState([]);
   const axiosSecure = useAxiosSecure();
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await axiosSecure.get(`/foods`);
-      const result = await res.data;
-      setFoods(result);
-    };
-    fetchData();
-  }, [axiosSecure]);
+  const {
+    data: foods,
+    isPending,
+    error,
+  } = useQuery({
+    queryKey: [`${url}`],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/${url}`);
+      return res.data;
+    },
+  });
+  // console.log(typeof foods);
 
-  return [foods];
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const res = await axiosSecure.get(`/foods`);
+  //     const result = await res.data;
+  //     //   console.log(result);
+  //     setFoods(result);
+  //   };
+  //   fetchData();
+  // }, [axiosSecure]);
+
+  return { foods, isPending, error };
 };
 
 export default useFoods;
