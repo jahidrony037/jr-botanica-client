@@ -126,7 +126,7 @@ const Navbar = () => {
                         </li>
 
                         <li className="w-40">
-                          <Link
+                          <button
                             onClick={() => handleLogOut()}
                             className="md:px-5 px-2 md:py-2 py-1 relative rounded  group overflow-hidden font-medium bg-[#014f2c] text-white inline-block border-[#84d814]  border-[1px] w-full text-center"
                           >
@@ -134,7 +134,7 @@ const Navbar = () => {
                             <span className="relative group-hover:text-white font-bold">
                               LogOut
                             </span>
-                          </Link>
+                          </button>
                         </li>
                       </ul>
                     )}
