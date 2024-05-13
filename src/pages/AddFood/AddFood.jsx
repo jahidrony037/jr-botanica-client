@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
@@ -7,9 +6,6 @@ import useAuth from "../../hooks/useAuth";
 
 const AddFood = () => {
   const { user } = useAuth() || {};
-  const [emailError, setEmailError] = useState("");
-  const [nameError, setNameError] = useState("");
-  const [imageError, setImageError] = useState("");
 
   const {
     register,
@@ -22,7 +18,6 @@ const AddFood = () => {
     console.log(data);
 
     const {
-      donator_email,
       expired_date,
       food_name,
       food_quantity,
@@ -30,39 +25,21 @@ const AddFood = () => {
       notes,
       photo,
       pickup_location,
-      donator_image,
-      donator_name,
     } = data;
 
     const food = {
-      donator_email: donator_email,
-      expired_date: expired_date,
+      donator_email: user?.email || user?.providerData[0]?.email,
+      expired_date: new Date(expired_date),
       food_name: food_name,
       food_quantity: food_quantity,
       food_status: food_status,
       notes: notes,
       photo_url: photo,
       pickup_location: pickup_location,
-      donator_image: donator_image,
-      donator_name: donator_name,
+      donator_image: user?.providerData[0]?.photoURL || user?.photoURL,
+      donator_name: user?.providerData[0]?.displayName || user?.displayName,
     };
     console.log(food);
-
-    if (user?.providerData[0]?.email !== donator_email) {
-      return setEmailError(`please provide your default email`);
-    } else {
-      setEmailError("");
-    }
-    if (user?.providerData[0]?.displayName !== donator_name) {
-      return setNameError(`please provide your default name`);
-    } else {
-      setNameError("");
-    }
-    if (user?.providerData[0]?.photoURL !== donator_image) {
-      return setImageError(`please provider your default image url`);
-    } else {
-      setImageError("");
-    }
 
     const postData = async () => {
       const res = await axios.post(`http://localhost:5000/addFood`, food);
@@ -212,7 +189,7 @@ const AddFood = () => {
               )}
             </div>
             {/* Donator Email */}
-            <div className="form-control">
+            {/* <div className="form-control">
               <label className="label">
                 <span className="label-text text-md">Donator Email*</span>
               </label>
@@ -237,10 +214,10 @@ const AddFood = () => {
               {emailError && (
                 <span className="text-red-600 font-bold">{emailError}</span>
               )}
-            </div>
+            </div> */}
 
             {/* Donator Name */}
-            <div className="form-control">
+            {/* <div className="form-control">
               <label className="label">
                 <span className="label-text text-md">Donator Name*</span>
               </label>
@@ -275,10 +252,10 @@ const AddFood = () => {
               {nameError && (
                 <span className="text-red-600 font-bold">{nameError}</span>
               )}
-            </div>
+            </div> */}
 
             {/* Donator Image */}
-            <div className="form-control">
+            {/* <div className="form-control">
               <label className="label">
                 <span className="label-text text-md">Donator Image*</span>
               </label>
@@ -300,7 +277,7 @@ const AddFood = () => {
               {imageError && (
                 <span className="text-red-600 font-bold">{imageError}</span>
               )}
-            </div>
+            </div> */}
 
             {/* Food Status */}
             <div className="form-control">
@@ -319,9 +296,6 @@ const AddFood = () => {
                   </option>
                   <option className="text-lg" value="available">
                     available
-                  </option>
-                  <option className="text-lg" value="not available">
-                    not available
                   </option>
                 </select>
                 {errors?.food_status && (

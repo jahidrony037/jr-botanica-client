@@ -2,9 +2,10 @@ import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
 import AddFood from "../pages/AddFood/AddFood";
 import AvailableFoods from "../pages/AvailableFoods/AvailableFoods";
-import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import FoodDetails from "../pages/FoodDetails/FoodDetails";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
+import RequestedFoods from "../pages/RequestedFoods/RequestedFoods";
 import SignUP from "../pages/SignUP/SignUP";
 import PrivateRoute from "./PrivateRoute";
 
@@ -12,7 +13,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    errorElement: <ErrorPage />,
+    // errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -37,6 +38,26 @@ const router = createBrowserRouter([
       {
         path: "/availableFoods",
         element: <AvailableFoods />,
+      },
+      {
+        path: "/availableFood/:id",
+        // loader: (params) =>
+        //   axios(`http://localhost:5000/foods/${params.params.id}`, {
+        //     withCredentials: true,
+        //   }),
+        element: (
+          <PrivateRoute>
+            <FoodDetails />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/foodRequest",
+        element: (
+          <PrivateRoute>
+            <RequestedFoods />
+          </PrivateRoute>
+        ),
       },
     ],
   },

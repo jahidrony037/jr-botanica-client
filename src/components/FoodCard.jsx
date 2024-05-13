@@ -14,6 +14,7 @@ const FoodCard = ({ food }) => {
     notes,
     _id,
   } = food;
+  const date = new Date(expired_date);
   //   console.log(donator_img);
   return (
     <div className="shadow-lg p-5 rounded-xl w-full">
@@ -40,7 +41,7 @@ const FoodCard = ({ food }) => {
             <ul>
               <li>Quantity: {food_quantity}</li>
               <li>Location: {pickup_location}</li>
-              <li>Expire Date: {expired_date}</li>
+              <li>Expire Date: {date.toISOString().split("T")[0]}</li>
               <li>
                 Notes:
                 {notes.length > 50
@@ -51,7 +52,7 @@ const FoodCard = ({ food }) => {
           </div>
         </div>
         <div className="mt-[20px]">
-          <Link to={`/food/${_id}`} className="btn w-full">
+          <Link to={`/availableFood/${_id}`} className="btn w-full">
             View Details
           </Link>
         </div>
