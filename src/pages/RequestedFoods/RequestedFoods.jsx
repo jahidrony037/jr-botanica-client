@@ -5,11 +5,11 @@ import RequestedFood from "./RequestedFood";
 const RequestedFoods = () => {
   const { user } = useAuth();
   const url = `requestedFoods?email=${user?.email}`;
-  const { foods, isPending, error } = useFoods(url);
-  console.log(foods, isPending, error);
+  const { foods } = useFoods(url);
+  //   console.log(foods, isPending, error);
   return (
     <div>
-      <h2 className="text-center text-4xl font-bold mt-10">
+      <h2 className="text-center text-4xl font-bold my-10">
         My Requested Food List
       </h2>
       <div className="mt-[50px]">

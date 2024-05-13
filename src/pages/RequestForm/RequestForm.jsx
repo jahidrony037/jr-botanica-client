@@ -61,7 +61,7 @@ const RequestForm = ({ close, isOpen, food }) => {
 
     if (donator_email === user?.email) {
       toast.error(
-        "sorry you cannot request this food!  cause you added this food",
+        "sorry you cannot request this food!  cause you are the donor of this food",
         {
           position: "top-center",
         }
@@ -335,7 +335,7 @@ const RequestForm = ({ close, isOpen, food }) => {
 RequestForm.propTypes = {
   food: PropType.object.isRequired,
   close: PropType.func.isRequired,
-  isOpen: PropType.func.isRequired,
+  isOpen: PropType.bool.isRequired,
 };
 
 export default RequestForm;
