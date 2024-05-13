@@ -19,6 +19,7 @@ const RequestedFoods = () => {
             <thead>
               <tr>
                 <th>Number</th>
+                <th>Food Name</th>
                 <th>Donar Name</th>
                 <th>Pickup Location</th>
                 <th>Expire Date</th>
@@ -26,7 +27,6 @@ const RequestedFoods = () => {
               </tr>
             </thead>
             <tbody>
-              {/* row 2 */}
               {foods?.map((food, i) => (
                 <RequestedFood key={food._id} i={i} food={food} />
               ))}
