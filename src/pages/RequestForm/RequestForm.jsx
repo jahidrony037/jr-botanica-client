@@ -8,6 +8,8 @@ import {
 } from "@headlessui/react";
 import PropType from "prop-types";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
@@ -33,7 +35,7 @@ const RequestForm = ({ close, isOpen, food }) => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     const { notes } = data;
     const date = new Date();
     const updateValue = {
@@ -42,9 +44,32 @@ const RequestForm = ({ close, isOpen, food }) => {
       food_status: "requested",
       request_user: user?.email,
     };
-    axiosSecure
-      .patch(`/food/${_id}`, updateValue)
-      .then((res) => console.log(res.data));
+    const handleRequestFood = async () => {
+      const res = await axiosSecure.patch(`/food/${_id}`, updateValue);
+      console.log(res.data);
+      const result = res.data;
+      if (result.modifiedCount > 0) {
+        Swal.fire({
+          position: "top-middle",
+          icon: "success",
+          title: "Request complete for this Food",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    };
+
+    if (donator_email === user?.email) {
+      toast.error(
+        "sorry you cannot request this food!  cause you added this food",
+        {
+          position: "top-center",
+        }
+      );
+    }
+    if (donator_email !== user?.email) {
+      handleRequestFood();
+    }
   };
 
   return (
