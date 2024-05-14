@@ -6,7 +6,7 @@ import { Tooltip } from "react-tooltip";
 
 const Footer = () => {
   return (
-    <div data-aos="zoom-in-up" data-aos-duration="2000">
+    <div>
       <footer className="footer p-10 bg-base-200 text-base-content z-10 mt-[100px]">
         <aside className="mx-auto">
           <img
@@ -28,22 +28,15 @@ const Footer = () => {
         </aside>
         <nav>
           <h6 className="footer-title">Services</h6>
-          <Link to="#countries" className="link link-hover">
-            Countries Tourist Spots
+          <Link to="/availableFoods" className="link link-hover">
+            Available Foods
           </Link>
-          <Link to="/addTouristSpot" className="link link-hover">
-            Add Tourist Spots
+          <Link to="/addFood" className="link link-hover">
+            Add Food Item
           </Link>
-          <Link to="/myList" className="link link-hover">
-            User Added List
+          <Link to="/manageFood" className="link link-hover">
+            User Food List
           </Link>
-          <a
-            target="_blank"
-            href="https://www.vacasa.com/"
-            className="link link-hover"
-          >
-            See the Details Every Spots
-          </a>
         </nav>
         <div>
           <h6 className="footer-title">Office Address</h6>
@@ -53,10 +46,7 @@ const Footer = () => {
           </p>
         </div>
         <nav>
-          <h6 className="footer-title">Company</h6>
-          <Link to="/about" className="link link-hover">
-            About us
-          </Link>
+          <h6 className="footer-title">Botanica</h6>
           <Link to="/contact" className="link link-hover">
             Contact
           </Link>
