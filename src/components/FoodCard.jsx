@@ -33,7 +33,7 @@ const FoodCard = ({ food }) => {
             <div className="flex justify-center bg-base-200 p-5 rounded-xl h-[220px]">
               <img
                 src={photo_url}
-                className="rounded object-cover"
+                className="rounded object-cover w-full"
                 alt="food_image"
               />
             </div>

@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 const MainLayout = () => {
   return (
     <div>
-      <div className="container mx-auto">
+      <div className="container mx-auto ">
         <Navbar />
       </div>
       <div className="container mx-auto min-h-[calc(100vh-291px)]">
