@@ -1,4 +1,5 @@
 import PropType from "prop-types";
+import { Link } from "react-router-dom";
 import useFormatDate from "../../hooks/useFormatDate";
 const FoodRow = ({ food, i, handleUpdate, handleDelete }) => {
   const { donator_name, food_quantity, food_name, expired_date, _id } =
@@ -12,12 +13,13 @@ const FoodRow = ({ food, i, handleUpdate, handleDelete }) => {
       <td>{donator_name}</td>
       <td>{useFormatDate(expired_date)}</td>
       <td className="flex gap-5">
-        <button
+        <Link
+          to={`/updateFood/${_id}`}
           onClick={() => handleUpdate()}
           className="btn  rounded-lg hover:bg-[#84d814] bg-[#84d814] text-white"
         >
           update
-        </button>
+        </Link>
         <button
           onClick={() => handleDelete(_id)}
           className="btn btn-error  rounded-lg text-white"

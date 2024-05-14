@@ -1,3 +1,4 @@
+import axios from "axios";
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
 import AddFood from "../pages/AddFood/AddFood";
@@ -8,6 +9,7 @@ import Login from "../pages/Login/Login";
 import ManageFood from "../pages/ManageFood/ManageFood";
 import RequestedFoods from "../pages/RequestedFoods/RequestedFoods";
 import SignUP from "../pages/SignUP/SignUP";
+import UpdateFood from "../pages/UpdateFood/UpdateFood";
 import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
@@ -43,7 +45,7 @@ const router = createBrowserRouter([
       {
         path: "/availableFood/:id",
         // loader: (params) =>
-        //   axios(`http://localhost:5000/foods/${params.params.id}`, {
+        //   axios(`foods/${params.params.id}`, {
         //     withCredentials: true,
         //   }),
         element: (
@@ -65,6 +67,16 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ManageFood />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/updateFood/:id",
+        loader: (params) =>
+          axios.get(`${import.meta.env.VITE_URL}/food/${params.params.id}`),
+        element: (
+          <PrivateRoute>
+            <UpdateFood />
           </PrivateRoute>
         ),
       },
