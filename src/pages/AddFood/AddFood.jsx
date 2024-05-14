@@ -318,7 +318,7 @@ const AddFood = () => {
                 {...register("notes", {
                   required: "notes is required",
                   minLength: {
-                    value: 20,
+                    value: 10,
                     message: "notes should be at least 10 character",
                   },
                   maxLength: {

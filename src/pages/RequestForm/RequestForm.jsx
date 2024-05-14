@@ -26,6 +26,8 @@ const RequestForm = ({ close, isOpen, food }) => {
     _id,
     donator_email,
     notes,
+    food_status,
+    requested_user,
   } = food;
   const {
     handleSubmit,
@@ -60,12 +62,15 @@ const RequestForm = ({ close, isOpen, food }) => {
     };
 
     if (donator_email === user?.email) {
-      toast.error(
+      return toast.error(
         "sorry you cannot request this food!  cause you are the donor of this food",
         {
           position: "top-center",
         }
       );
+    }
+    if (requested_user === user?.email && food_status === "requested") {
+      return toast.error("sorry you already requested this food!");
     }
     if (donator_email !== user?.email) {
       handleRequestFood();
