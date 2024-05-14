@@ -19,10 +19,6 @@ const ManageFood = () => {
     fetchData();
   }, [axiosSecure, url]);
 
-  const handleUpdate = () => {
-    console.log(`handle update amare click marse`);
-  };
-
   const handleDelete = async (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -74,7 +70,7 @@ const ManageFood = () => {
               </tr>
             </thead>
             <tbody>
-              {!foods.length ? (
+              {!foods?.length ? (
                 <tr>
                   <th></th>
                   <th></th>
@@ -92,7 +88,6 @@ const ManageFood = () => {
                     food={food}
                     i={i}
                     handleDelete={handleDelete}
-                    handleUpdate={handleUpdate}
                   />
                 ))
               )}

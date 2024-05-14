@@ -15,7 +15,6 @@ const RequestedFoods = () => {
       <div className="mt-[50px]">
         <div className="overflow-x-auto">
           <table className="table">
-            {/* head */}
             <thead>
               <tr>
                 <th>Number</th>
@@ -27,9 +26,22 @@ const RequestedFoods = () => {
               </tr>
             </thead>
             <tbody>
-              {foods?.map((food, i) => (
-                <RequestedFood key={food._id} i={i} food={food} />
-              ))}
+              {!foods?.length ? (
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th className="font-bold text-center">
+                    No Requested Food Here
+                  </th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              ) : (
+                foods?.map((food, i) => (
+                  <RequestedFood key={food._id} i={i} food={food} />
+                ))
+              )}
             </tbody>
           </table>
         </div>

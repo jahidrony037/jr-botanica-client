@@ -40,7 +40,7 @@ const UpdateFood = () => {
   }, [food_status, setValue]);
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     const food = {
       food_name: data.food_name,
       photo_url: data.photo,

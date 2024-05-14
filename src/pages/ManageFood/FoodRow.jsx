@@ -1,7 +1,7 @@
 import PropType from "prop-types";
 import { Link } from "react-router-dom";
 import useFormatDate from "../../hooks/useFormatDate";
-const FoodRow = ({ food, i, handleUpdate, handleDelete }) => {
+const FoodRow = ({ food, i, handleDelete }) => {
   const { donator_name, food_quantity, food_name, expired_date, _id } =
     food || {};
   //console.log(food);
@@ -15,7 +15,6 @@ const FoodRow = ({ food, i, handleUpdate, handleDelete }) => {
       <td className="flex gap-5">
         <Link
           to={`/updateFood/${_id}`}
-          onClick={() => handleUpdate()}
           className="btn  rounded-lg hover:bg-[#84d814] bg-[#84d814] text-white"
         >
           update
@@ -34,7 +33,6 @@ const FoodRow = ({ food, i, handleUpdate, handleDelete }) => {
 FoodRow.propTypes = {
   food: PropType.object.isRequired,
   i: PropType.number,
-  handleUpdate: PropType.func,
   handleDelete: PropType.func,
 };
 

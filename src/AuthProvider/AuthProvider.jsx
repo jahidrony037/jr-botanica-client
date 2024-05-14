@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   GithubAuthProvider,
   GoogleAuthProvider,
@@ -10,6 +11,7 @@ import {
 } from "firebase/auth";
 import PropType from "prop-types";
 import { createContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import auth from "../firebase/firebase.config";
 
 export const AuthContext = createContext(null);
@@ -52,15 +54,37 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubScribe = onAuthStateChanged(auth, (currentUser) => {
+      const userEmail = currentUser?.email || user?.email;
+      const loggedInUser = { email: userEmail };
       if (currentUser) {
         setUser(currentUser);
+        axios
+          .post(`${import.meta.env.VITE_URL}/jwt`, loggedInUser, {
+            withCredentials: true,
+          })
+          .then(() => {
+            {
+              /*console.log(res.data)*/
+            }
+          })
+          .catch((error) => toast.error(error.message));
       } else {
         setUser(null);
+        axios
+          .post(`${import.meta.env.VITE_URL}/logOut`, loggedInUser, {
+            withCredentials: true,
+          })
+          .then(() => {
+            {
+              /*console.log(res.data)*/
+            }
+          })
+          .catch((err) => console.log(err.message));
       }
       setIsLoading(false);
     });
     return () => unsubScribe();
-  }, []);
+  }, [user]);
 
   const allInfo = {
     setShow,

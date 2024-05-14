@@ -15,7 +15,7 @@ const AddFood = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
 
     const {
       expired_date,
@@ -39,12 +39,16 @@ const AddFood = () => {
       donator_image: user?.providerData[0]?.photoURL || user?.photoURL,
       donator_name: user?.providerData[0]?.displayName || user?.displayName,
     };
-    console.log(food);
+    // console.log(food);
 
     const postData = async () => {
-      const res = await axios.post(`http://localhost:5000/addFood`, food);
+      const res = await axios.post(
+        `${import.meta.env.VITE_URL}/addFood`,
+        food,
+        { withCredentials: true }
+      );
       const result = await res.data;
-      console.log(result);
+      // console.log(result);
       if (result.insertedId) {
         Swal.fire({
           title: `Well Done ${user?.providerData[0]?.displayName}`,

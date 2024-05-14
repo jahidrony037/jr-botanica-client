@@ -48,11 +48,11 @@ const RequestForm = ({ close, isOpen, food }) => {
     };
     const handleRequestFood = async () => {
       const res = await axiosSecure.patch(`/food/${_id}`, updateValue);
-      console.log(res.data);
+      // console.log(res.data);
       const result = res.data;
       if (result.modifiedCount > 0) {
         Swal.fire({
-          position: "top-middle",
+          position: "center",
           icon: "success",
           title: "Request complete for this Food",
           showConfirmButton: false,

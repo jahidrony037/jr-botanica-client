@@ -73,7 +73,9 @@ const router = createBrowserRouter([
       {
         path: "/updateFood/:id",
         loader: (params) =>
-          axios.get(`${import.meta.env.VITE_URL}/food/${params.params.id}`),
+          axios.get(`${import.meta.env.VITE_URL}/food/${params.params.id}`, {
+            withCredentials: true,
+          }),
         element: (
           <PrivateRoute>
             <UpdateFood />

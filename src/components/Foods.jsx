@@ -9,7 +9,7 @@ const Foods = () => {
   // const { data } = useQuery({
   //   queryKey: ["foods"],
   //   queryFn: async () => {
-  //     const res = await axios.get(`http://localhost:5000/foods`);
+  //     const res = await axios.get(`/foods`);
   //     return res.data;
   //   },
   // });
