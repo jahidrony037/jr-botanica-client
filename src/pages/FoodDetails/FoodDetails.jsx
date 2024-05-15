@@ -46,11 +46,11 @@ const FoodDetails = () => {
       {isPending ? (
         <Loader />
       ) : (
-        <div className="flex gap-6 ">
+        <div className="flex gap-6 md:flex-row flex-col">
           <div className="image-container">
             <img src={photo_url} alt="food_image" />
           </div>
-          <div>
+          <div className="pl-2 md:pl-0">
             <p className="text-center text-3xl font-bold">Donor Information</p>
             <ul className="mt-6 space-y-3">
               <li className="text-[20px]">Donor Name:{donator_name}</li>
