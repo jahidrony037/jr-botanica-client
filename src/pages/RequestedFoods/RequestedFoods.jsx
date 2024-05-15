@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import useAuth from "../../hooks/useAuth";
 import useFoods from "../../hooks/useFoods";
 import RequestedFood from "./RequestedFood";
@@ -9,6 +10,9 @@ const RequestedFoods = () => {
   //   console.log(foods, isPending, error);
   return (
     <div>
+      <Helmet>
+        <title>JR-Botanica | Request-list</title>
+      </Helmet>
       <h2 className="text-center text-4xl font-bold my-10">
         My Requested Food List
       </h2>

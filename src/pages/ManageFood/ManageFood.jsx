@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -51,6 +52,9 @@ const ManageFood = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>JR-Botanica | ManageFood</title>
+      </Helmet>
       <h2 className="text-center text-4xl font-bold my-10">
         All Food Manage Here
       </h2>
