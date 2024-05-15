@@ -4,6 +4,7 @@ import MainLayout from "../layout/MainLayout";
 import AddFood from "../pages/AddFood/AddFood";
 import AvailableFoods from "../pages/AvailableFoods/AvailableFoods";
 import Contact from "../pages/Contact/Contact";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import FoodDetails from "../pages/FoodDetails/FoodDetails";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    // errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
