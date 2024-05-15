@@ -1,6 +1,7 @@
 import { Button } from "@headlessui/react";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import RequestForm from "../RequestForm/RequestForm";
@@ -26,6 +27,7 @@ const FoodDetails = () => {
     photo_url,
     pickup_location,
     donator_name,
+    notes,
   } = food || {};
 
   let [isOpen, setIsOpen] = useState(false);
@@ -38,40 +40,52 @@ const FoodDetails = () => {
   //   console.log(isOpen);
   return (
     <div>
+      <Helmet>
+        <title>JR-Botanica | {food_name} details</title>
+      </Helmet>
       {isPending ? (
         <Loader />
       ) : (
-        <div>
-          <p>Donor Information</p>
-          <ul>
-            <li>Donor Name:{donator_name}</li>
-            <li>pickup Location: {pickup_location}</li>
-          </ul>
-
+        <div className="flex gap-6 ">
+          <div className="image-container">
+            <img src={photo_url} alt="food_image" />
+          </div>
           <div>
-            <p>single food section</p>
-            <ul>
-              <li>food_photo:{photo_url}</li>
-              <li>food name:{food_name}</li>
-              <li>food quantity:{food_quantity}</li>
-              <li>{expired_date}</li>
+            <p className="text-center text-3xl font-bold">Donor Information</p>
+            <ul className="mt-6 space-y-3">
+              <li className="text-[20px]">Donor Name:{donator_name}</li>
+              <li className="text-[20px]">
+                pickup Location: {pickup_location}
+              </li>
             </ul>
+            <div className="border-[1px] border-gray-600 border-solid h-[1px] my-10"></div>
+            <div>
+              <p className="text-center text-3xl font-bold">Food Information</p>
+              <ul className="space-y-3 list-disc mt-8">
+                <li className="text-[20px]">food name:{food_name}</li>
+                <li className="text-[20px]">food quantity:{food_quantity}</li>
+                <li className="text-[20px]">
+                  Expire Date: {expired_date.split("T")[0]}
+                </li>
+                <li className="text-[20px]">Description: {notes}</li>
+              </ul>
+            </div>
+            <div className="mt-5">
+              <Button onClick={() => open()} className="btn">
+                REQUEST
+              </Button>
+              {isOpen && (
+                <RequestForm
+                  food={food}
+                  close={close}
+                  setIsOpen={setIsOpen}
+                  isOpen={isOpen}
+                />
+              )}
+            </div>
           </div>
         </div>
       )}
-      <div>
-        <Button onClick={() => open()} className="btn">
-          REQUEST
-        </Button>
-        {isOpen && (
-          <RequestForm
-            food={food}
-            close={close}
-            setIsOpen={setIsOpen}
-            isOpen={isOpen}
-          />
-        )}
-      </div>
     </div>
   );
 };
