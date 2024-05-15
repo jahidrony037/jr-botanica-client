@@ -10,9 +10,9 @@ const Footer = () => {
       <footer className="footer p-10 bg-base-200 text-base-content z-10 mt-[100px]">
         <aside className="mx-auto">
           <img
-            src="./logo.svg"
+            src="https://i.ibb.co/1sN3PPB/botanica.png"
             alt="logo"
-            className="md:w-[100px] md:h-[100px] w-16 h-16 mx-auto md:mx-0"
+            className="md:w-[100px] md:h-[100px] w-16 h-16 object-contain mx-auto md:mx-0"
             data-tooltip-id="my-tooltip-inline"
             data-tooltip-content="JR-BOTANICA"
           />
