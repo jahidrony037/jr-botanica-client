@@ -19,7 +19,7 @@ const FoodCard = ({ food }) => {
   return (
     <div className="shadow-lg p-5 rounded-xl w-full">
       <div className="flex flex-col  items-stretch justify-center">
-        <div className="h-[500px]">
+        <div className="h-[520px]">
           <div className="donator information flex gap-6">
             <div className="avatar">
               <div className="w-16 rounded-full">
@@ -30,15 +30,15 @@ const FoodCard = ({ food }) => {
           </div>
           <div className="border-[1px] border-solid my-4"></div>
           <div className="food information mt-3">
-            <div className="flex justify-center bg-base-200 p-5 rounded-xl h-[220px]">
+            <div className="flex justify-center bg-gray-100 p-2  rounded-xl h-[220px]">
               <img
                 src={photo_url}
-                className="rounded object-cover w-full"
+                className="rounded object-cover w-full h-[200px]"
                 alt="food_image"
               />
             </div>
             <p className="text-center font-bold mt-3">{food_name}</p>
-            <ul>
+            <ul className="space-y-3">
               <li>Quantity: {food_quantity}</li>
               <li>Location: {pickup_location}</li>
               <li>Expire Date: {date.toISOString().split("T")[0]}</li>
@@ -52,7 +52,10 @@ const FoodCard = ({ food }) => {
           </div>
         </div>
         <div className="mt-[20px]">
-          <Link to={`/availableFood/${_id}`} className="btn w-full">
+          <Link
+            to={`/availableFood/${_id}`}
+            className="btn w-full bg-[#84d814] text-white"
+          >
             View Details
           </Link>
         </div>
