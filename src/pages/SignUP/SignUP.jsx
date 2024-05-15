@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { LuEye, LuEyeOff } from "react-icons/lu";
 import { Link, useNavigate } from "react-router-dom";
@@ -44,6 +45,9 @@ const SignUP = () => {
   };
   return (
     <div className="flex flex-col justify-center items-center  md:flex-row md:justify-between gap-6 md:items-center w-full">
+      <Helmet>
+        <title>JR-Botanica | Register</title>
+      </Helmet>
       <div>
         <img
           src="https://i.ibb.co/GtKtr8R/healthy-food.png"
