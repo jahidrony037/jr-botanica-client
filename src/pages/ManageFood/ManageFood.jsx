@@ -63,6 +63,7 @@ const ManageFood = () => {
               <tr>
                 <th>Number</th>
                 <th>Food Name</th>
+                <th>Food Image</th>
                 <th>Food Quantity</th>
                 <th>Donor Name</th>
                 <th>Expire Date</th>

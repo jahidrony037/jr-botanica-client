@@ -5,13 +5,26 @@ import { Link } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
 import useFormatDate from "../../hooks/useFormatDate";
 const FoodRow = ({ food, i, handleDelete }) => {
-  const { donator_name, food_quantity, food_name, expired_date, _id } =
-    food || {};
+  const {
+    donator_name,
+    food_quantity,
+    food_name,
+    expired_date,
+    _id,
+    photo_url,
+  } = food || {};
   //console.log(food);
   return (
     <tr className="hover cursor-pointer">
       <th>{i + 1}</th>
       <td>{food_name}</td>
+      <td>
+        {" "}
+        <img
+          src={photo_url}
+          className="object-cover w-12 h-12 rounded-full"
+        />{" "}
+      </td>
       <td>{food_quantity}</td>
       <td>{donator_name}</td>
       <td>{useFormatDate(expired_date)}</td>
