@@ -41,7 +41,7 @@ const FoodDetails = () => {
   return (
     <div>
       <Helmet>
-        <title>JR-Botanica | {food_name} details</title>
+        <title>{`JR-Botanica | ${food_name} details`}</title>
       </Helmet>
       {isPending ? (
         <Loader />
