@@ -39,3 +39,4 @@ we use many yarn/npm packages,mention bellow some of them
 - [TanStackQuery] - using for fetching data
 - [axios] - using for fetching data
 - [JWT] - using for authorization token base
+# jr-botanica-client
