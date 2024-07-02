@@ -40,3 +40,37 @@ we use many yarn/npm packages,mention bellow some of them
 - [axios] - using for fetching data
 - [JWT] - using for authorization token base
 # jr-botanica-client
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone git@github.com:jahidrony037/jr-botanica-client.git
+```
+
+Go to the project directory
+
+```bash
+  cd jr-botanica-client
+```
+
+Install dependencies
+
+```bash
+  yarn
+```
+
+Install other packages
+-please check dependencies in packages.json and install with yarn 
+
+Example:
+```bash
+  yarn add packageName
+```
+
+Start the server
+
+```bash
+  yarn dev
+```
